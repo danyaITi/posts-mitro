@@ -16,7 +16,7 @@ export const Burger = () => {
             <img src={burger} alt="menu" height={50} onClick={handleShow} />
 
             <Offcanvas show={show} onHide={handleClose}>
-                <Offcanvas.Header closeButton>
+                <Offcanvas.Header closeButton className="border-bottom">
                     <Offcanvas.Title>Меню</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>

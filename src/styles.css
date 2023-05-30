@@ -1,4 +1,1 @@
-.App {
-  font-family: sans-serif;
-  text-align: center;
-}
+@import 'bootstrap/dist/css/bootstrap.min.css';

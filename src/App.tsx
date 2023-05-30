@@ -1,9 +1,17 @@
+import { Link } from "react-router-dom";
+import { RoutesApp } from "./routes";
 import "./styles.css";
 
-export default function App() {
+const App = () => {
   return (
     <div className="App">
-      <h1>Hello, World!</h1>
+      <nav>
+        <Link to={"/"}>Home</Link>
+        <Link to={"/about"}>About</Link>
+      </nav>
+      <RoutesApp />
     </div>
   );
-}
+};
+
+export default App;

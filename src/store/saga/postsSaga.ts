@@ -1,24 +1,26 @@
 import { AxiosError } from 'axios';
-import { put, call, takeLatest } from 'redux-saga/effects';
+import { put, call, takeLatest, delay } from 'redux-saga/effects';
 import {
-    fetchPostsFullfiled,
-    fetchPostsPending,
-    fetchPostsRejected,
+    getPostsFullfiled,
+    getPostsPending,
+    getPostsRejected,
+    GET_POSTS,
     Post,
 } from '../reducers/postsSlice';
-import { getPosts } from './api';
+import { fetchPosts } from './api';
 
 function* fetchPostsSaga(): Generator {
-    yield put(fetchPostsPending());
+    yield put(getPostsPending());
     try {
-        const posts = yield call(getPosts);
-        yield put(fetchPostsFullfiled(posts as Post[]));
+        yield delay(2000);
+        const posts = yield call(fetchPosts);
+        yield put(getPostsFullfiled(posts as Post[]));
     } catch (e) {
         const error = e as AxiosError;
-        yield put(fetchPostsRejected(error.message));
+        yield put(getPostsRejected(error.message));
     }
 }
 
 export function* watchFetchPosts() {
-    yield takeLatest(fetchPostsPending.type, fetchPostsSaga);
+    yield takeLatest(GET_POSTS, fetchPostsSaga);
 }

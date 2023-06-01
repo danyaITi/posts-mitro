@@ -1,8 +1,8 @@
 import axios, { AxiosError } from 'axios';
 
-const BASE_URL = 'https://jsonplaceholder.typicode.com/posts?_limit=20';
+const BASE_URL = 'https://jsonplaceholder.typicode.com/posts';
 
-export const getPosts = async () => {
+export const fetchPosts = async () => {
     try {
         const response = await axios.get(BASE_URL);
         return response.data;

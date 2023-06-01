@@ -1,6 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAction, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../store';
 
 export interface Post {
     userId: number;
@@ -25,22 +24,25 @@ export const postsSlice = createSlice({
     name: 'posts',
     initialState,
     reducers: {
-        fetchPostsPending: (state) => {
+        getPostsPending: (state) => {
             state.loading = true;
             state.error = null;
         },
-        fetchPostsFullfiled: (state, action: PayloadAction<Post[]>) => {
+        getPostsFullfiled: (state, action: PayloadAction<Post[]>) => {
             state.loading = false;
             state.posts = action.payload;
         },
-        fetchPostsRejected: (state, action: PayloadAction<string>) => {
+        getPostsRejected: (state, action: PayloadAction<string>) => {
             state.loading = false;
             state.error = action.payload;
         },
     },
 });
 
-export const { fetchPostsPending, fetchPostsFullfiled, fetchPostsRejected } =
+export const GET_POSTS = 'posts/getPosts';
+export const PostsAction = createAction(GET_POSTS);
+
+export const { getPostsPending, getPostsFullfiled, getPostsRejected } =
     postsSlice.actions;
 
 export default postsSlice.reducer;

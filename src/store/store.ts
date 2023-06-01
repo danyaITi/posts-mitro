@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './saga/rootSaga';
 import postsReducer from './reducers/postsSlice';
+import { useDispatch } from 'react-redux';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -15,3 +16,4 @@ export const store = configureStore({
 sagaMiddleware.run(rootSaga);
 
 export type RootState = ReturnType<typeof store.getState>;
+export const useStoreDispatch = () => useDispatch<typeof store.dispatch>();

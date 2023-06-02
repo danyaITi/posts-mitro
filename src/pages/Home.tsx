@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { PostsAction } from '../store/reducers/postsSlice';
 import { RootState, useStoreDispatch } from '../store/store';
 
+import Spinner from 'react-bootstrap/Spinner';
+
 export const Home = () => {
     const dispacth = useStoreDispatch();
     const { loading, posts } = useSelector((state: RootState) => state.posts);
@@ -11,9 +13,16 @@ export const Home = () => {
         dispacth(PostsAction());
     }, [dispacth]);
 
+    if (loading) {
+        return (
+            <div className="position-absolute top-50 start-50">
+                <Spinner variant="primary" />;
+            </div>
+        );
+    }
+
     return (
-        <div>
-            {loading && <h1>loading....</h1>}
+        <>
             <ul>
                 {posts?.map((it) => (
                     <li key={it.id} className="mt-5">
@@ -28,6 +37,6 @@ export const Home = () => {
                     </li>
                 ))}
             </ul>
-        </div>
+        </>
     );
 };

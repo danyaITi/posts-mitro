@@ -24,7 +24,7 @@ export const Home = () => {
                         />
                         <b>{it.title}</b>
                         <p>{it.body}</p>
-                        <button>Комментарии</button>
+                        <button className="p-1">Комментарии</button>
                     </li>
                 ))}
             </ul>

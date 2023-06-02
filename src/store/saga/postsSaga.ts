@@ -6,15 +6,21 @@ import {
     getPostsRejected,
     GET_POSTS,
     Post,
+    PostsAction,
 } from '../reducers/postsSlice';
-import { fetchPosts } from './api';
+import { fetchPosts, fetchUserPosts } from './api';
 
 function* fetchPostsSaga(): Generator {
     yield put(getPostsPending());
     try {
         yield delay(500);
-        const posts = yield call(fetchPosts);
-        yield put(getPostsFullfiled(posts as Post[]));
+        if (PostsAction().payload) {
+            const posts = yield call(fetchUserPosts, 1);
+            yield put(getPostsFullfiled(posts as Post[]));
+        } else {
+            const posts = yield call(fetchPosts);
+            yield put(getPostsFullfiled(posts as Post[]));
+        }
     } catch (e) {
         const error = e as AxiosError;
         yield put(getPostsRejected(error.message));

@@ -11,3 +11,13 @@ export const fetchPosts = async () => {
         throw new Error(error.message);
     }
 };
+
+export const fetchUserPosts = async (userId: number) => {
+    try {
+        const response = await axios.get(`${BASE_URL}?userId=${userId}`);
+        return response.data;
+    } catch (e) {
+        const error = e as AxiosError;
+        throw new Error(error.message);
+    }
+};

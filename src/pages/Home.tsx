@@ -13,11 +13,19 @@ export const Home = () => {
 
     return (
         <div>
-            Home
             {loading && <h1>loading....</h1>}
             <ul>
                 {posts?.map((it) => (
-                    <li key={it.id}>{it.title}</li>
+                    <li key={it.id} className="mt-5">
+                        <img
+                            role={'button'}
+                            src="https://cdn3.iconfinder.com/data/icons/diversity-avatars/64/japanese-traditional-man-1024.png"
+                            height={40}
+                        />
+                        <b>{it.title}</b>
+                        <p>{it.body}</p>
+                        <button>Комментарии</button>
+                    </li>
                 ))}
             </ul>
         </div>

@@ -12,7 +12,7 @@ import { fetchPosts } from './api';
 function* fetchPostsSaga(): Generator {
     yield put(getPostsPending());
     try {
-        yield delay(2000);
+        yield delay(500);
         const posts = yield call(fetchPosts);
         yield put(getPostsFullfiled(posts as Post[]));
     } catch (e) {

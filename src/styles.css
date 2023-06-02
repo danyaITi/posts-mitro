@@ -26,3 +26,7 @@
     animation: tilt alternate;
     animation-duration: 1.5s;
 }
+
+.burger-email {
+    font-size: 12px;
+}

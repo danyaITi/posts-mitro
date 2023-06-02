@@ -17,7 +17,18 @@ export const Burger = () => {
 
             <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton className="border-bottom">
-                    <Offcanvas.Title>Меню</Offcanvas.Title>
+                    <Offcanvas.Title className="d-flex align-items-center">
+                        <img
+                            src="https://www.pinclipart.com/picdir/big/49-490443_avatar-icon-tlcharger-avatar-icon-clipart.png"
+                            height={50}
+                        />
+                        <span className="ms-2">
+                            <div>Danil</div>
+                            <small className="burger-email">
+                                danil.grz@mail.ru
+                            </small>
+                        </span>
+                    </Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <Nav />

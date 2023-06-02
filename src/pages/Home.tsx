@@ -4,6 +4,7 @@ import { PostsAction } from '../store/reducers/postsSlice';
 import { RootState, useStoreDispatch } from '../store/store';
 
 import Spinner from 'react-bootstrap/Spinner';
+import CardPost from '../components/CardPost';
 
 export const Home = () => {
     const dispacth = useStoreDispatch();
@@ -25,16 +26,7 @@ export const Home = () => {
         <>
             <ul>
                 {posts?.map((it) => (
-                    <li key={it.id} className="mt-5">
-                        <img
-                            role={'button'}
-                            src="https://cdn3.iconfinder.com/data/icons/diversity-avatars/64/japanese-traditional-man-1024.png"
-                            height={40}
-                        />
-                        <b>{it.title}</b>
-                        <p>{it.body}</p>
-                        <button className="p-1">Комментарии</button>
-                    </li>
+                    <CardPost item={it} />
                 ))}
             </ul>
         </>

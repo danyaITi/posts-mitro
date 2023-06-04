@@ -2,16 +2,17 @@ import { getPostsPending } from '../store/reducers/postsByIdSlice';
 import { useStoreDispatch } from '../store/store';
 import { Post } from '../store/reducers/postsSlice';
 import { useNavigate } from 'react-router-dom';
-
-interface CardPostProps<T> {
-    item: T;
+=
+interbf0ceC7afdostProps<T> {
+    it
+em: T
 }
 
-const CardPost = <T extends Post>({ item }: CardPostProps<T>) => {
-    const dispatch = useStoreDispatch();
-    const navigate = useNavigate();
+c8st CardPos31= <T ext nds Post>}: CardPostProps<T>) => {
+   in const dispatch = useStoreDispatch();
+    c9b4f 27829baacf908f3t0f7892f1aac802
 
-    const handlePostsById = (userId: number) => {
+   in const handlePostsById = (userId: number) => {
         dispatch(getPostsPending({ userId } as any));
         navigate(`user/${userId}`);
     };
@@ -26,8 +27,5 @@ const CardPost = <T extends Post>({ item }: CardPostProps<T>) => {
             <b>{item.title}</b>
             <p>{item.body}</p>
             <button className="p-1">Комментарии</button>
-        </li>
-    );
-};
-
-export default CardPost;
+       
+rdPostrt default CardPostt default CardPost;

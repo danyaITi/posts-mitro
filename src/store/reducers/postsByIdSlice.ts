@@ -24,22 +24,25 @@ export const postsByIdSlice = createSlice({
     name: 'postsById',
     initialState,
     reducers: {
-        getPostsPending: (state) => {
+        getPostsByIdPending: (state) => {
             state.loading = true;
             state.error = null;
         },
-        getPostsFullfiled: (state, action: PayloadAction<Post[]>) => {
+        getPostsByIdFullfiled: (state, action: PayloadAction<Post[]>) => {
             state.loading = false;
             state.posts = action.payload;
         },
-        getPostsRejected: (state, action: PayloadAction<string>) => {
+        getPostsByIdRejected: (state, action: PayloadAction<string>) => {
             state.loading = false;
             state.error = action.payload;
         },
     },
 });
 
-export const { getPostsPending, getPostsFullfiled, getPostsRejected } =
-    postsByIdSlice.actions;
+export const {
+    getPostsByIdPending,
+    getPostsByIdFullfiled,
+    getPostsByIdRejected,
+} = postsByIdSlice.actions;
 
 export default postsByIdSlice.reducer;

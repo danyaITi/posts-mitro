@@ -1,28 +1,27 @@
-import { getPostsPending } from '../store/reducers/postsByIdSlice';
-import { useStoreDispatch } from '../store/store';
 import { Post } from '../store/reducers/postsSlice';
-import { useNavigate } from 'react-router-dom';
 
 interface CardPostProps<T> {
     item: T;
+    handleClick?: (arg: number) => void;
+    role?: 'button';
 }
 
-const CardPost = <T extends Post>({ item }: CardPostProps<T>) => {
-    const dispatch = useStoreDispatch();
-    const navigate = useNavigate();
-
-    const handlePostsById = (userId: number) => {
-        dispatch(getPostsPending({ userId } as any));
-        navigate(`user/${userId}`);
+const CardPost = <T extends Post>({
+    item,
+    handleClick,
+    role,
+}: CardPostProps<T>) => {
+    const onClick = (id: number) => {
+        if (handleClick) handleClick(id);
     };
 
     return (
         <li className="mt-5">
             <img
-                role={'button'}
+                role={role}
                 src="https://cdn3.iconfinder.com/data/icons/diversity-avatars/64/japanese-traditional-man-1024.png"
                 height={40}
-                onClick={() => handlePostsById(item.userId)}
+                onClick={() => onClick(item.userId)}
             />
             <b>{item.title}</b>
             <p>{item.body}</p>

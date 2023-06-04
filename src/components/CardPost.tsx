@@ -1,6 +1,7 @@
 import { getPostsPending } from '../store/reducers/postsByIdSlice';
 import { useStoreDispatch } from '../store/store';
 import { Post } from '../store/reducers/postsSlice';
+import { useNavigate } from 'react-router-dom';
 
 interface CardPostProps<T> {
     item: T;
@@ -8,9 +9,11 @@ interface CardPostProps<T> {
 
 const CardPost = <T extends Post>({ item }: CardPostProps<T>) => {
     const dispatch = useStoreDispatch();
+    const navigate = useNavigate();
 
     const handlePostsById = (userId: number) => {
         dispatch(getPostsPending({ userId } as any));
+        navigate(`user/${userId}`);
     };
     return (
         <li className="mt-5">

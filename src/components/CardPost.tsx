@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 interface CardPostProps<T> {
     item: T;
 }
- 
+
 const CardPost = <T extends Post>({ item }: CardPostProps<T>) => {
     const dispatch = useStoreDispatch();
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ const CardPost = <T extends Post>({ item }: CardPostProps<T>) => {
         dispatch(getPostsPending({ userId } as any));
         navigate(`user/${userId}`);
     };
-    
+
     return (
         <li className="mt-5">
             <img
@@ -31,5 +31,4 @@ const CardPost = <T extends Post>({ item }: CardPostProps<T>) => {
     );
 };
 
-export default CardPoststst</ti>
- tlfrfr) tlfrfr)
+export default CardPost;

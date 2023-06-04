@@ -1,6 +1,8 @@
 import { Post } from '../store/reducers/postsSlice';
 
 import Card from 'react-bootstrap/Card';
+import { useStoreDispatch } from '../store/store';
+import { getCommentsPending } from '../store/reducers/commentsSlice';
 
 interface CardPostProps<T> {
     item: T;
@@ -13,8 +15,13 @@ const CardPost = <T extends Post>({
     handleClick,
     role,
 }: CardPostProps<T>) => {
+    const dispatch = useStoreDispatch();
     const onClick = (id: number) => {
         if (handleClick) handleClick(id);
+    };
+
+    const handleComments = (id: number) => {
+        dispatch(getCommentsPending({ id } as any));
     };
 
     return (
@@ -30,7 +37,9 @@ const CardPost = <T extends Post>({
                     />
                 </Card.Subtitle>
                 <Card.Text>{item.body}</Card.Text>
-                <Card.Link href="#">Комментарии</Card.Link>
+                <Card.Link onClick={() => handleComments(item.userId)}>
+                    Комментарии
+                </Card.Link>
             </Card.Body>
         </Card>
     );

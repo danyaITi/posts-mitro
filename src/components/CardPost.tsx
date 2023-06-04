@@ -1,8 +1,10 @@
 import { Post } from '../store/reducers/postsSlice';
 
 import Card from 'react-bootstrap/Card';
-import { useStoreDispatch } from '../store/store';
+import { RootState, useStoreDispatch } from '../store/store';
 import { getCommentsPending } from '../store/reducers/commentsSlice';
+import { useSelector } from 'react-redux';
+import { CommentByUser } from './CommentByUser';
 
 interface CardPostProps<T> {
     item: T;
@@ -16,6 +18,7 @@ const CardPost = <T extends Post>({
     role,
 }: CardPostProps<T>) => {
     const dispatch = useStoreDispatch();
+    const { comments } = useSelector((state: RootState) => state.comments);
     const onClick = (id: number) => {
         if (handleClick) handleClick(id);
     };
@@ -44,6 +47,13 @@ const CardPost = <T extends Post>({
                     Комментарии
                 </Card.Link>
             </Card.Body>
+            {comments && (
+                <ul>
+                    {comments.map((comment) => (
+                        <CommentByUser comment={comment} />
+                    ))}
+                </ul>
+            )}
         </Card>
     );
 };

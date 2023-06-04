@@ -1,3 +1,4 @@
+import { AnyAction } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 import { put, call, takeLatest, delay } from 'redux-saga/effects';
 import {
@@ -6,12 +7,13 @@ import {
     getCommentsRejected,
     Comment,
 } from '../reducers/commentsSlice';
-import { fetchPosts } from './api';
+import { fetchComments } from './api';
 
-function* fetchCommentsSaga(): Generator {
+function* fetchCommentsSaga(action: AnyAction): Generator {
+    const { id } = action.payload;
     try {
         yield delay(500);
-        const posts = yield call(fetchPosts);
+        const posts = yield call(fetchComments, id);
         yield put(getCommentsFullfiled(posts as Comment[]));
     } catch (e) {
         const error = e as AxiosError;

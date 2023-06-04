@@ -22,9 +22,9 @@ export const fetchPostsById = async (userId: number) => {
     }
 };
 
-export const fetchComments = async () => {
+export const fetchComments = async (byId: number) => {
     try {
-        const response = await axios.get(`${BASE_URL}/comments`);
+        const response = await axios.get(`${BASE_URL}/comments?postId=${byId}`);
         return response.data;
     } catch (e) {
         const error = e as AxiosError;

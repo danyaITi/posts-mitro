@@ -37,7 +37,10 @@ const CardPost = <T extends Post>({
                     />
                 </Card.Subtitle>
                 <Card.Text>{item.body}</Card.Text>
-                <Card.Link onClick={() => handleComments(item.userId)}>
+                <Card.Link
+                    role={role}
+                    onClick={() => handleComments(item.userId)}
+                >
                     Комментарии
                 </Card.Link>
             </Card.Body>

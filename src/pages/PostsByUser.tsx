@@ -28,7 +28,7 @@ export const PostsByUser = () => {
             </Button>
             <b>Posts by user with id: {id}</b>
             {posts?.map((post) => (
-                <CardPost item={post} />
+                <CardPost role="button" item={post} />
             ))}
         </div>
     );

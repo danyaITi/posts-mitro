@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState, useStoreDispatch } from '../store/store';
-
 import Spinner from 'react-bootstrap/Spinner';
 import CardPost from '../components/CardPost';
 import { getPostsPending } from '../store/reducers/postsSlice';

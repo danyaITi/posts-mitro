@@ -1,17 +1,17 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { PostsAction } from '../store/reducers/postsSlice';
 import { RootState, useStoreDispatch } from '../store/store';
 
 import Spinner from 'react-bootstrap/Spinner';
 import CardPost from '../components/CardPost';
+import { getPostsPending } from '../store/reducers/postsSlice';
 
 export const Home = () => {
     const dispacth = useStoreDispatch();
     const { loading, posts } = useSelector((state: RootState) => state.posts);
 
     useEffect(() => {
-        dispacth(PostsAction());
+        dispacth(getPostsPending());
     }, [dispacth]);
 
     if (loading) {
@@ -26,7 +26,7 @@ export const Home = () => {
         <>
             <ul>
                 {posts?.map((it) => (
-                    <CardPost item={it} />
+                    <CardPost key={it.id} item={it} />
                 ))}
             </ul>
         </>

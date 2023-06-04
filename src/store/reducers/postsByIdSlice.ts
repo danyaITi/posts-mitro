@@ -1,4 +1,4 @@
-import { createAction, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 export interface Post {
@@ -20,8 +20,8 @@ const initialState: PostsState = {
     error: null,
 };
 
-export const postsSlice = createSlice({
-    name: 'posts',
+export const postsByIdSlice = createSlice({
+    name: 'postsById',
     initialState,
     reducers: {
         getPostsPending: (state) => {
@@ -40,6 +40,6 @@ export const postsSlice = createSlice({
 });
 
 export const { getPostsPending, getPostsFullfiled, getPostsRejected } =
-    postsSlice.actions;
+    postsByIdSlice.actions;
 
-export default postsSlice.reducer;
+export default postsByIdSlice.reducer;

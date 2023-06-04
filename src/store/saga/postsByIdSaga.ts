@@ -1,3 +1,4 @@
+import { AnyAction } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 import { put, call, takeLatest, delay } from 'redux-saga/effects';
 import {
@@ -5,13 +6,14 @@ import {
     getPostsPending,
     getPostsRejected,
     Post,
-} from '../reducers/postsSlice';
-import { fetchPosts } from './api';
+} from '../reducers/postsByIdSlice';
+import { fetchPostsById } from './api';
 
-function* fetchPostsSaga(): Generator {
+function* fetchPostsByIdSaga(action: AnyAction): Generator {
+    const { userId } = action.payload;
     try {
         yield delay(500);
-        const posts = yield call(fetchPosts);
+        const posts = yield call(fetchPostsById, userId);
         yield put(getPostsFullfiled(posts as Post[]));
     } catch (e) {
         const error = e as AxiosError;
@@ -19,6 +21,6 @@ function* fetchPostsSaga(): Generator {
     }
 }
 
-export function* watchFetchPosts() {
-    yield takeLatest(getPostsPending.type, fetchPostsSaga);
+export function* watchFetchPostsById() {
+    yield takeLatest(getPostsPending.type, fetchPostsByIdSaga);
 }

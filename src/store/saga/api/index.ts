@@ -12,7 +12,7 @@ export const fetchPosts = async () => {
     }
 };
 
-export const fetchUserPosts = async (userId: number) => {
+export const fetchPostsById = async (userId: number) => {
     try {
         const response = await axios.get(`${BASE_URL}?userId=${userId}`);
         return response.data;

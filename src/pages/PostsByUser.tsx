@@ -1,14 +1,17 @@
-import { Spinner } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import CardPost from '../components/CardPost';
 import { RootState } from '../store/store';
+
+import { Spinner } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 
 export const PostsByUser = () => {
     const { posts, loading } = useSelector(
         (state: RootState) => state.postsById,
     );
     let { id } = useParams();
+    let navigate = useNavigate();
 
     if (loading) {
         return (
@@ -19,13 +22,14 @@ export const PostsByUser = () => {
     }
 
     return (
-        <div className="d-flex align-items-center flex-column">
+        <div className="d-flex align-items-center flex-column justify-content-center">
+            <Button variant="outline-primary" onClick={() => navigate(-1)}>
+                Назад
+            </Button>
             <b>Posts by user with id: {id}</b>
-            <ul>
-                {posts?.map((post) => (
-                    <CardPost item={post} />
-                ))}
-            </ul>
+            {posts?.map((post) => (
+                <CardPost item={post} />
+            ))}
         </div>
     );
 };

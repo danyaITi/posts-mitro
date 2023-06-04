@@ -22,7 +22,7 @@ const initialState: CommentsState = {
 };
 
 export const commentsSlice = createSlice({
-    name: 'postsById',
+    name: 'comments',
     initialState,
     reducers: {
         getCommentsPending: (state) => {
